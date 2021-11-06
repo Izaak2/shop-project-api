@@ -1,13 +1,15 @@
 //First we need to create express server
-
 var express = require("express");
 var app = express();
-
 var bodyParser = require("body-parser");
-
 var mongoose = require("mongoose");
 
-//initialisng the DB for the shop
+//testing created blueprints
+var Product = require("./model/product");
+var WishList = require("./model/wishlist");
+
+
+//connection to the DB for the shop
 var db = mongoose.connect("mongodb://localhost/shop-project");
 
 app.use(bodyParser.json());
