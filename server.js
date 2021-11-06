@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 
 var mongoose = require("mongoose");
 
-//initialisng the DB for the shop
+//connection to the DB for the shop
 var db = mongoose.connect("mongodb://localhost/shop-project");
 
 app.use(bodyParser.json());
