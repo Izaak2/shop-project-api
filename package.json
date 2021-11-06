@@ -1,0 +1,25 @@
+{
+  "name": "shop-project",
+  "version": "1.0.0",
+  "description": "a first shop project with JS, NodeJS and other fantastic stuff.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Izaak2/shop-project-api.git"
+  },
+  "author": "Izaak2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Izaak2/shop-project-api/issues"
+  },
+  "homepage": "https://github.com/Izaak2/shop-project-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  }
+}
