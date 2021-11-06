@@ -5,8 +5,10 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 //testing created blueprints
+//you can require anything that you exports
 var Product = require("./model/product");
 var WishList = require("./model/wishlist");
+
 
 
 //connection to the DB for the shop
