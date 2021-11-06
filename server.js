@@ -37,6 +37,27 @@ app.post("/product", function(request, response) {
   });
 });
 
+app.get("/product", function(request, response) {
+
+  Product.find({}, function(err, products) { // this is asynchronous
+        if(err) {
+          response.status(500).send({error: "Could not find the collection"});
+        } else {
+          response.status(200).send(products);
+        }
+  });
+  //Very bad example due to asynchronous processing
+  // var prods;
+  // Product.find({}, function(err, products) { // this is asynchronous
+  //       if(err) {
+  //         response.status(500).send({error: "Could not find the collection"});
+  //       } else {
+  //         prods = products;
+  //       }
+  // });
+  // response.send(prods); //this will send incorrect data, usually empty.
+});
+
 //Starting server that can be run on terminal
 app.listen(3000, function() {
   console.log("Shop API running on port 3000...");
