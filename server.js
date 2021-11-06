@@ -4,8 +4,6 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-<<<<<<< HEAD
-=======
 //testing created blueprints
 //you can require anything that you exports
 var Product = require("./model/product");
@@ -13,7 +11,6 @@ var WishList = require("./model/wishlist");
 
 
 
->>>>>>> product
 //connection to the DB for the shop
 var db = mongoose.connect("mongodb://localhost/shop-project");
 
