@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema; //blueprint, scheme behinde data that they may be consistent
 
-var product = new Schema ({
+var product = new Schema({
   title: String,
   price: Number,
-  likes: Number
+  likes: {type: Number, default: 0}
 });
 
 module.exports = mongoose.model("Product", product); // Product is store in DB (Capital P)

@@ -17,6 +17,26 @@ var db = mongoose.connect("mongodb://localhost/shop-project");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//API functions
+app.post("/product", function(request, response) {
+  var product = new Product();
+  product.title = request.body.title;
+  product.price = request.body.price;
+  //alternative way
+  // var product = new Product(request.body);
+  // var product = new Product(request.body.title, request.body.price);
+  product.save(function(err, savedProduct) {
+    if(err) {
+      response.status(500).send({error: "Could not save product"});
+    } else {
+      response.status(200).send(savedProduct); // It is typical to REST API that we send newly send product back to user. it is esier than refreshing whole list of prodcts.
+      //alternative
+      //response.send(savedProduct);
+      //response.json(savedProdcut0);
+    }
+  });
+});
+
 //Starting server that can be run on terminal
 app.listen(3000, function() {
   console.log("Shop API running on port 3000...");
