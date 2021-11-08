@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 //API functions
+//**************************Product
 app.post("/product", function(request, response) {
   var product = new Product();
   product.title = request.body.title;
@@ -39,6 +40,7 @@ app.post("/product", function(request, response) {
 
 app.get("/product", function(request, response) {
 
+  // .find give an array back. I need to take out an item to access them!!
   Product.find({}, function(err, products) { // this is asynchronous
         if(err) {
           response.status(500).send({error: "Could not find the collection"});
@@ -56,6 +58,12 @@ app.get("/product", function(request, response) {
   //       }
   // });
   // response.send(prods); //this will send incorrect data, usually empty.
+});
+
+//**************************Wish List
+
+app.post("/wishlist", function(request, response) {
+  var wishList = new WishList();
 });
 
 //Starting server that can be run on terminal
