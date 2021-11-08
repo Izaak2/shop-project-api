@@ -64,6 +64,15 @@ app.get("/product", function(request, response) {
 
 app.post("/wishlist", function(request, response) {
   var wishList = new WishList();
+  wishList.title = request.body.title;
+
+  wishList.save(function(err, savedWishList){
+    if (err) {
+      response.status(500).send({error: "Could not save wish list"});
+    } else {
+      response.status(200).send(savedWishList);
+    }
+  });
 });
 
 //Starting server that can be run on terminal
