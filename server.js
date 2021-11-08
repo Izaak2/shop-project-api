@@ -61,6 +61,23 @@ app.get("/product", function(request, response) {
 });
 
 //**************************Wish List
+app.get("/wishlist", function(request, response){
+  // WishList.find({}, function(err, wishLists) { // sending only IDs of products
+  //   if(err) {
+  //     response.send(500).send({error: "Could not find wish lists"});
+  //   }else {
+  //     response.status(200).send(wishLists);
+  //   }
+  // });
+
+  WishList.find({}).populate({path:"products", model: "Product"}).exec(function(err, wishList) { // using ID to get product, no need to copying products. We using the products we put to products list.
+      if(err) {
+        response.send(500).send({error: "Could not find wish lists"});
+      }else {
+        response.status(200).send(wishList);
+      }
+  });
+});
 
 app.post("/wishlist", function(request, response) {
   var wishList = new WishList();
@@ -71,6 +88,22 @@ app.post("/wishlist", function(request, response) {
       response.status(500).send({error: "Could not save wish list"});
     } else {
       response.status(200).send(savedWishList);
+    }
+  });
+});
+
+app.put("/wishlist/product/add", function(request, response){
+  Product.findOne({_id: request.body.productId}, function(err, product) { // if you looking for 1 item, make sure you put findOne
+    if (err) {
+      response.status(500).send({error: "Could not find an item"});
+    }else {
+      WishList.update({_id:request.body.wishListId}, {$addToSet:{products: product._id}}, function(err, addStatus) { // it can add only one of the same id
+        if (err) {
+          response.status(500).send({error: "Could not add product to a wish list"})
+        }else {
+          response.status(200).send("Successfully added.");
+        }
+      });
     }
   });
 });
